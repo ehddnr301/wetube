@@ -3,7 +3,7 @@ import autoprefixer from "autoprefixer";
 import ExtractCSS from "extract-text-webpack-plugin";
 
 const MODE = process.env.WEBPACK_ENV;
-const ENTRY_FILE = path.resolve(__dirname, "assets", "js", "main.js");
+const ENTRY_FILE = path.resolve(__dirname, "assets", "ts", "main.ts");
 const OUTPUT_DIR = path.join(__dirname, "static");
 
 const config = {
@@ -11,6 +11,18 @@ const config = {
   mode: MODE,
   module: {
     rules: [
+      {
+        exclude: /node_modules/,
+        test: /\.(ts)$/,
+        use: [
+          {
+            loader: "babel-loader"
+          },
+          {
+            loader: "ts-loader"
+          }
+        ]
+      },
       {
         test: /\.(scss)$/,
         use: ExtractCSS.extract([
@@ -20,8 +32,8 @@ const config = {
           {
             loader: "postcss-loader",
             options: {
-              plugin() {
-                return [autoprefixer({ browsers: "cover 99.5%" })];
+              plugins() {
+                return [autoprefixer({ overrideBrowserslist: "cover 99.5%" })];
               }
             }
           },
