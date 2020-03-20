@@ -1,6 +1,10 @@
+import "./db";
 import app from "./app";
+import * as dotenv from "dotenv";
+dotenv.config();
+import "./models/Video";
 
-const PORT = 4000;
+const PORT = process.env.PORT || 4000;
 
 const handleListening = () =>
   // tslint:disable-next-line: no-console
