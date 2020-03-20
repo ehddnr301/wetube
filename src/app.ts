@@ -1,9 +1,9 @@
-import * as express from "express";
-import * as morgan from "morgan";
-import * as helmet from "helmet";
-import * as cookieParser from "cookie-parser";
-import * as bodyParser from "body-parser";
-import * as path from "path";
+import express from "express";
+import morgan from "morgan";
+import helmet from "helmet";
+import cookieParser from "cookie-parser";
+import bodyParser from "body-parser";
+import path from "path";
 import { localsMiddleware } from "./middlewares";
 import routes from "./routes";
 import userRouter from "./routers/userRouter";

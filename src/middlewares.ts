@@ -1,5 +1,5 @@
 import routes from "./routes";
-import * as multer from "multer";
+import multer from "multer";
 import { Request, Response, NextFunction } from "express";
 
 const multerVideo = multer({ dest: "uploads/videos/" });
