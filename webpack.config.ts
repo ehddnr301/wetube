@@ -16,9 +16,6 @@ const config = {
         test: /\.(ts)$/,
         use: [
           {
-            loader: "babel-loader"
-          },
-          {
             loader: "ts-loader"
           }
         ]

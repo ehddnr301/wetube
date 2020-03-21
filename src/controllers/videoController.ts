@@ -1,6 +1,6 @@
 import routes from "../routes";
 import { Request, Response, NextFunction } from "express";
-import Video from "../models/Video";
+import Video, { IVideo } from "../models/Video";
 
 export const home = async (req: Request, res: Response) => {
   try {
@@ -11,11 +11,11 @@ export const home = async (req: Request, res: Response) => {
   }
 };
 
-export const search = async (req, res) => {
+export const search = async (req: Request, res: Response) => {
   const {
     query: { term: searchingBy }
   } = req;
-  let videos = [];
+  let videos: IVideo[] = [];
   try {
     videos = await Video.find({
       title: { $regex: searchingBy, $options: "i" }
@@ -59,6 +59,7 @@ export const getEditVideo = async (req: Request, res: Response) => {
     params: { id }
   } = req;
   try {
+    console.log(id);
     const video = await Video.findById(id);
     res.render("editVideo", { pageTitle: `Edit ${video.title}`, video });
   } catch (error) {

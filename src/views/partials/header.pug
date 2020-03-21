@@ -1,11 +1,18 @@
 header.header
-    .header__column
-        a(href=routes.home)
-            i.fab.fa-youtube
-    .header__column
-        form(action=routes.search, method="get")
-            input(type="text", placeholder="Search by term...", name="term")
-    .header__column
+    .header__wrapper
+        .header__column
+            a(href=routes.home)
+                i.fab.fa-youtube
+                span Wetube  NomadCoders
+        .header__column
+            form(action=routes.search, method="get")
+                input(type="text", placeholder="Search by term...", name="term")
+        .header__column
+            .info
+                .info__one Nomadcoders
+                .info__two Ehddnr
+                .info__three Typescript
+    .header__nav
         ul
             if !user.isAuthenticated
                 li

@@ -105,7 +105,7 @@ eval("// removed by extract-text-webpack-plugin\n\n//# sourceURL=webpack:///./as
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\n\n__webpack_require__(/*! ../scss/styles.scss */ \"./assets/scss/styles.scss\");\n\n//# sourceURL=webpack:///./assets/ts/main.ts?");
+eval("\nObject.defineProperty(exports, \"__esModule\", { value: true });\n__webpack_require__(/*! ../scss/styles.scss */ \"./assets/scss/styles.scss\");\nconst something = () => {\n    console.log(\"sometihing\");\n};\nsomething();\n\n\n//# sourceURL=webpack:///./assets/ts/main.ts?");
 
 /***/ })
 
