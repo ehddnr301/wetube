@@ -3,7 +3,10 @@
   align-items: center;
   justify-content: center;
   .form-container {
-    border-right: 1px solid black;
+    &.join,
+    &.login {
+      border-right: 1px solid black;
+    }
     width: 100%;
     display: flex;
     flex-direction: column;
