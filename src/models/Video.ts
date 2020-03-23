@@ -7,7 +7,6 @@ export interface IVideo extends mongoose.Document {
   fileUrl: string;
   title: string;
   description: string;
-  video: string;
   createAt: Date;
   creator: IUser;
   views: number;
@@ -20,13 +19,13 @@ const VideoSchema: mongoose.Schema<IVideo> = new mongoose.Schema({
       type: mongoose.Schema.Types.ObjectId
     }
   ],
-  createdAt: {
-    default: Date.now,
-    type: Date
-  },
   creator: {
     ref: "User",
     type: mongoose.Schema.Types.ObjectId
+  },
+  createdAt: {
+    default: Date.now,
+    type: Date
   },
   description: String,
   fileUrl: {
@@ -37,12 +36,6 @@ const VideoSchema: mongoose.Schema<IVideo> = new mongoose.Schema({
     required: "Title is required",
     type: String
   },
-  video: [
-    {
-      ref: "Video",
-      type: mongoose.Schema.Types.ObjectId
-    }
-  ],
   views: {
     default: 0,
     type: Number

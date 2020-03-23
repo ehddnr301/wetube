@@ -34,3 +34,7 @@
 - `await req.user["changePassword"](oldPassword, newPassword);` 처럼 수정하니 access가 되었음.
 - <https://stackoverflow.com/questions/36607979/how-to-get-around-property-does-not-exist-on-object/45090885>
 - `If you don't want to change the type or create an interface, you can also use this syntax to access unknown properties:` 라고함
+
+## upload video
+
+- 이또한 위처럼 save나 id에 access 할수없어서 [] 를 사용하였습니다.
