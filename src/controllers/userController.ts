@@ -2,7 +2,6 @@ import passport from "passport";
 import routes from "../routes";
 import User from "../models/User";
 import { Request, Response, NextFunction } from "express";
-import mongoose from "mongoose";
 
 export const githubLogin = passport.authenticate("github");
 export const kakaoLogin = passport.authenticate("kakao");

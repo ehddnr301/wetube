@@ -38,3 +38,23 @@
 ## upload video
 
 - 이또한 위처럼 save나 id에 access 할수없어서 [] 를 사용하였습니다.
+
+## webpack error
+
+- `Module not found: Error: Can't resolve './videoPlayer' in '/Users/don/Documents/wetube/assets/ts'@ ./assets/ts/main.ts 4:0-24`
+- resolve 해주지 못하는것으로 보여 webpack 설정에서 resolve를 추가해 주었습니다.
+
+## Document
+
+- `Property 'webkitExitFullscreen' does not exist on type 'Document'`
+- document type 을 선언해도 되지만 any로 주었다.
+
+## HTMLDivElement
+
+- `Property 'webkitRequestFullscreen' does not exist on type 'HTMLDivElement'`
+- 기존것을 Extend 하여 any로 처리
+
+## video
+
+- 전체화면을 하면 기존에 주었던 850px이 제일 나중에 적용되기때문에 width가 850px로 제한
+- js에서 스타일을 주고 없애는 식으로 임시조치하였습니다.

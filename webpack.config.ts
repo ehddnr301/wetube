@@ -45,7 +45,10 @@ const config = {
     path: OUTPUT_DIR,
     filename: "[name].js"
   },
-  plugins: [new ExtractCSS("styles.css")]
+  plugins: [new ExtractCSS("styles.css")],
+  resolve: {
+    extensions: [".ts", ".js"]
+  }
 };
 
 export default config;
