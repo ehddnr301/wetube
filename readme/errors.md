@@ -26,3 +26,11 @@
 ## kakao strategy
 
 - `passport_kakao_1.default.Strategy is not a constructor` 에러가 나서 {Strategy} 를 passport-kakao 에서 import 하였습니다.
+
+## changePassword
+
+- `Property 'changePassword' does not exist on type 'User'` 에러가 발생
+- `PassportLocalSchema` 에 changePassword가 있음에도 access 가 안되었음.
+- `await req.user["changePassword"](oldPassword, newPassword);` 처럼 수정하니 access가 되었음.
+- <https://stackoverflow.com/questions/36607979/how-to-get-around-property-does-not-exist-on-object/45090885>
+- `If you don't want to change the type or create an interface, you can also use this syntax to access unknown properties:` 라고함

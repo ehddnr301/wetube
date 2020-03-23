@@ -34,10 +34,12 @@ export const postUpload = async (req: Request, res: Response) => {
     body: { title, description },
     file: { path }
   } = req;
+  const creator = req.user["id"];
   const newVideo = await Video.create({
     fileUrl: path,
     title,
-    description
+    description,
+    creator
   });
   res.redirect(routes.videoDetail(newVideo.id));
 };
