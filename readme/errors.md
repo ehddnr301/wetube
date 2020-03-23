@@ -12,3 +12,13 @@
   - `Enables emit interoperability between CommonJS and ES Modules via creation of namespace objects for all imports. Implies 'allowSyntheticDefaultImports'.`
   - allowSyntheticDefaultImports 를 암시적으로 허용해야한다.
   - default export 가 없으면 `import * as` 이런식으로 써주는게 맞지만 위 두옵션을 주면 그냥 import something from "somthing" 이 가능하다.
+
+## User mode type
+
+- user model type을 기존의 IUser로 했을때는 passport-local-mongoose의 기능을 사용하지 못하여서 수정합니다.
+- mongoose.PassportLocalSchema 이 기본적으로 존재하여서 이것으로 변경하였습니다.
+
+## github callback 에서 받아온 profile 사용
+
+- <https://github.com/wan2land/stdjs/blob/3638ee0141aaeed571e0c7323bb2f37216ece267/packages/oauth/src/strategies/github.ts> 에서 발견.
+- interface를 따로 만들어준다.

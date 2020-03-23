@@ -14,7 +14,7 @@ header.header
                 .info__three Typescript
     .header__nav
         ul
-            if !user.isAuthenticated
+            if !user
                 li
                     a(href=routes.join) Join
                 li

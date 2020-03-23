@@ -1,15 +1,15 @@
-import mongoose from "mongoose";
+import mongoose, { PassportLocalModel } from "mongoose";
+import passportLocalMongoose from "passport-local-mongoose";
 
 export interface IUser extends mongoose.Document {
   avatarUrl: string;
   email: string;
-  facebookId: number;
   githubId: number;
   kakaoId: number;
   name: string;
 }
 
-const userSchema: mongoose.Schema<IUser> = new mongoose.Schema({
+const UserSchema: mongoose.PassportLocalSchema = new mongoose.Schema({
   avatarUrl: String,
   comments: [
     {
@@ -18,7 +18,6 @@ const userSchema: mongoose.Schema<IUser> = new mongoose.Schema({
     }
   ],
   email: String,
-  facebookId: Number,
   githubId: Number,
   kakaoId: Number,
   name: String,
@@ -30,6 +29,8 @@ const userSchema: mongoose.Schema<IUser> = new mongoose.Schema({
   ]
 });
 
-const model = mongoose.model<IUser & mongoose.Document>("User", userSchema);
+UserSchema.plugin(passportLocalMongoose, { usernameField: "email" });
+
+const model = mongoose.model<IUser & mongoose.Document>("User", UserSchema);
 
 export default model;
