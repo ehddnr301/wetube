@@ -27,8 +27,9 @@ const GITHUB_CALLBACK = "/auth/github/callback";
 
 // Kakao
 
-const KAKAO_CALLBACK = "/auth/kakao/callback";
-const KAKAO = `/oauth/authorize?client_id=${process.env.KAKAO_KEY}&redirect_uri=${KAKAO_CALLBACK}&response_type=code`;
+const KAKAO_CALLBACK = "http://localhost:4000/auth/kakao/callback";
+const KAKAO = `https://kauth.kakao.com/oauth/authorize?client_id=${process.env.KAKAO_KEY}&redirect_uri=${KAKAO_CALLBACK}&response_type=code`;
+const K_CALLBACK = "/auth/kakao/callback";
 
 const routes = {
   home: HOME,
@@ -72,7 +73,8 @@ const routes = {
   gitHub: GITHUB,
   githubCallback: GITHUB_CALLBACK,
   kakao: KAKAO,
-  kakao
+  kakaoCallback: KAKAO_CALLBACK,
+  kCallback: K_CALLBACK
 };
 
 export default routes;

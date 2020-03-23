@@ -22,3 +22,7 @@
 
 - <https://github.com/wan2land/stdjs/blob/3638ee0141aaeed571e0c7323bb2f37216ece267/packages/oauth/src/strategies/github.ts> 에서 발견.
 - interface를 따로 만들어준다.
+
+## kakao strategy
+
+- `passport_kakao_1.default.Strategy is not a constructor` 에러가 나서 {Strategy} 를 passport-kakao 에서 import 하였습니다.
