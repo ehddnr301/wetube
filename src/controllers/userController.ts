@@ -2,6 +2,7 @@ import passport from "passport";
 import routes from "../routes";
 import User from "../models/User";
 import { Request, Response, NextFunction } from "express";
+import mongoose from "mongoose";
 
 export const githubLogin = passport.authenticate("github");
 export const kakaoLogin = passport.authenticate("kakao");
@@ -43,6 +44,10 @@ export const postJoin = async (
   }
 };
 
+export const getMe = (req: Request, res: Response) => {
+  res.render("userDetail", { pageTitle: "User Detail", user: req.user });
+};
+
 export const getLogin = (req: Request, res: Response) =>
   res.render("login", { pageTitle: "Log In" });
 export const postLogin = passport.authenticate("local", {
@@ -55,12 +60,56 @@ export const logout = (req: Request, res: Response) => {
   res.redirect(routes.home);
 };
 
-export const userDetail = (req: Request, res: Response) =>
-  res.render("userDetail", { pageTitle: "User Detail" });
-export const editProfile = (req: Request, res: Response) =>
+export const userDetail = async (req: Request, res: Response) => {
+  const {
+    params: { id }
+  } = req;
+  try {
+    const user = await User.findById(id);
+    res.render("userDetail", { pageTitle: "User Detail", user });
+  } catch (error) {
+    res.redirect(routes.home);
+  }
+};
+export const getEditProfile = (req: Request, res: Response) =>
   res.render("editProfile", { pageTitle: "Edit Profile" });
-export const changePassword = (req: Request, res: Response) =>
+export const postEditProfile = async (req, res) => {
+  const {
+    body: { name, email },
+    file
+  } = req;
+  try {
+    await User.findByIdAndUpdate(req.user.id, {
+      name,
+      email,
+      avatarUrl: file ? file.path : req.user.avatarUrl
+    });
+    res.redirect(routes.me);
+  } catch (error) {
+    res.redirect(routes.editProfile);
+  }
+};
+
+export const getChangePassword = (req: Request, res: Response) =>
   res.render("changePassword", { pageTitle: "Change Password" });
+
+export const postChangePassword = async (req: Request, res: Response) => {
+  const {
+    body: { oldPassword, newPassword, newPassword1 }
+  } = req;
+  try {
+    if (newPassword !== newPassword1) {
+      res.status(400);
+      res.redirect(`/users/${routes.changePassword}`);
+      return;
+    }
+    await req.user.changePassword(oldPassword, newPassword);
+    res.redirect(routes.me);
+  } catch (error) {
+    res.status(400);
+    res.redirect(`/users/${routes.changePassword}`);
+  }
+};
 
 export const githubLoginCallback = async (
   _: any,
