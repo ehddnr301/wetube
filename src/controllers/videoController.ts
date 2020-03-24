@@ -56,7 +56,6 @@ export const videoDetail = async (req: Request, res: Response) => {
     const video = await Video.findById(id)
       .populate("creator")
       .populate("comments");
-    console.log(video);
     res.render("videoDetail", { pageTitle: video.title, video });
   } catch (error) {
     res.redirect(routes.home);
@@ -146,4 +145,8 @@ export const postAddComment = async (req: Request, res: Response) => {
   } finally {
     res.end();
   }
+};
+
+export const deleteComment = async (req: Request, res: Response) => {
+  console.log("hi");
 };
