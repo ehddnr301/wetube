@@ -32,6 +32,10 @@ const KAKAO_CALLBACK = "http://localhost:4000/auth/kakao/callback";
 const KAKAO = `https://kauth.kakao.com/oauth/authorize?client_id=${process.env.KAKAO_KEY}&redirect_uri=${KAKAO_CALLBACK}&response_type=code`;
 const K_CALLBACK = "/auth/kakao/callback";
 
+const API = "/api";
+const REGISTER_VIEW = "/:id/view";
+const ADD_COMMENT = "/:id/comment";
+
 const routes = {
   home: HOME,
   join: JOIN,
@@ -76,7 +80,10 @@ const routes = {
   kakao: KAKAO,
   kakaoCallback: KAKAO_CALLBACK,
   kCallback: K_CALLBACK,
-  me: ME
+  me: ME,
+  api: API,
+  registerView: REGISTER_VIEW,
+  addComment: ADD_COMMENT
 };
 
 export default routes;

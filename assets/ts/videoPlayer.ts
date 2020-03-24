@@ -16,6 +16,13 @@ interface MYDivElement extends HTMLDivElement {
   msRequestFullscreen?: any;
 }
 
+const registerView = () => {
+  const videoId = window.location.href.split("/videos/")[1];
+  fetch(`/api/${videoId}/view`, {
+    method: "POST"
+  });
+};
+
 function handlePlayClick(): void {
   if (videoPlayer.paused) {
     videoPlayer.play();
@@ -28,9 +35,12 @@ function handlePlayClick(): void {
 
 function handleVolumeClick(): void {
   if (videoPlayer.muted) {
+    console.log(videoPlayer.volume);
     videoPlayer.muted = false;
     volumeBtn.innerHTML = '<i class="fas fa-volume-up"></i>';
+    volumeRange.value = videoPlayer.volume.toString();
   } else {
+    volumeRange.value = "0";
     videoPlayer.muted = true;
     volumeBtn.innerHTML = '<i class="fas fa-volume-mute"></i>';
   }
@@ -64,11 +74,12 @@ function setTotalTime() {
 }
 
 function handleEnded() {
+  registerView();
   videoPlayer.currentTime = 0;
   playBtn.innerHTML = '<i class="fas fa-play"></i>';
 }
 
-function handleDrag(event) {
+function handleDrag(event: any) {
   const {
     target: { value }
   } = event;
