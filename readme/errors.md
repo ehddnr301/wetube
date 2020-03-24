@@ -58,3 +58,8 @@
 
 - 전체화면을 하면 기존에 주었던 850px이 제일 나중에 적용되기때문에 width가 850px로 제한
 - js에서 스타일을 주고 없애는 식으로 임시조치하였습니다.
+
+## MediaRecorder
+
+- `Cannot find name 'MediaRecorder'.`
+- `yarn add @types/dom-mediacapture-record` 로 해결
