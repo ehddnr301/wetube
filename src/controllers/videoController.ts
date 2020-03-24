@@ -148,5 +148,21 @@ export const postAddComment = async (req: Request, res: Response) => {
 };
 
 export const deleteComment = async (req: Request, res: Response) => {
-  console.log("hi");
+  const {
+    params: { id }
+  } = req;
+  try {
+    const comment = await Comment.findById(id);
+    const creator = String(comment["creator"]);
+    if (creator !== req.user["id"]) {
+      throw Error();
+    } else {
+      await Comment.findOneAndRemove({ _id: id });
+    }
+    res.status(200);
+  } catch (error) {
+    console.log(error);
+  } finally {
+    res.end();
+  }
 };

@@ -13,21 +13,36 @@ const increaseNumber = () => {
     parseInt(commentNumber.innerHTML, 10) + 1
   ).toString();
 };
+const decreaseNumber = () => {
+  commentNumber.innerHTML = (
+    parseInt(commentNumber.innerHTML, 10) - 1
+  ).toString();
+};
 
-const handleDelete = (event: any) => {
-  const commentId = window.location.href;
-  console.log("hi", commentId);
+const deleteCo = (e: any) => {
+  const targetComment = e.target.parentNode;
+  if (targetComment) {
+    targetComment.remove();
+    decreaseNumber();
+  }
+};
+
+const handleDelete = async (event: any) => {
+  const commentId = event.target.id;
+  const response = await axios({
+    url: `/api/${commentId}`,
+    method: "delete"
+  });
+  if (response.status === 200) {
+    deleteCo(event);
+  }
 };
 
 const addComment = (comment: string) => {
   const li = document.createElement("li");
   const span = document.createElement("span");
-  const delBtn = document.createElement("span");
-  delBtn.innerHTML = "❌";
-  delBtn.addEventListener("click", handleDelete);
   span.innerHTML = comment;
   li.appendChild(span);
-  li.appendChild(delBtn);
   commentList.prepend(li);
   increaseNumber();
 };
@@ -56,8 +71,8 @@ const handleSubmit = (event: any) => {
 
 function init() {
   addCommentForm.addEventListener("submit", handleSubmit);
-  for (let i: number; i < deleteBtn.length; i++) {
-    console.log(deleteBtn[i]);
+  for (let i: number = 0; i < deleteBtn.length; i++) {
+    deleteBtn[i].addEventListener("click", handleDelete);
   }
 }
 
