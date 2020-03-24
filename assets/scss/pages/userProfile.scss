@@ -22,3 +22,24 @@
     }
   }
 }
+
+.user-videos {
+  margin-top: 50px;
+  overflow: hidden;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  white-space: nowrap;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  .videoBlock {
+    display: inline-block;
+    width: 300px;
+    &:not(:last-child) {
+      margin-right: 50px;
+    }
+    video {
+      border-radius: 5px;
+    }
+  }
+}

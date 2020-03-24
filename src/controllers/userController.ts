@@ -43,8 +43,14 @@ export const postJoin = async (
   }
 };
 
-export const getMe = (req: Request, res: Response) => {
-  res.render("userDetail", { pageTitle: "User Detail", user: req.user });
+export const getMe = async (req: Request, res: Response) => {
+  const id = req.user["id"];
+  const userMe = await User.findById(id).populate("videos");
+  res.render("userDetail", {
+    pageTitle: "User Detail",
+    user: req.user,
+    userMe
+  });
 };
 
 export const getLogin = (req: Request, res: Response) =>
