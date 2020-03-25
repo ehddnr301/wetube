@@ -20,7 +20,7 @@ const decreaseNumber = () => {
 };
 
 const deleteCo = (e: any) => {
-  const targetComment = e.target.parentNode;
+  const targetComment = e.target.parentNode.parentNode;
   if (targetComment) {
     targetComment.remove();
     decreaseNumber();
@@ -28,7 +28,7 @@ const deleteCo = (e: any) => {
 };
 
 const handleDelete = async (event: any) => {
-  const commentId = event.target.id;
+  const commentId = event.target.parentNode.id;
   const response = await axios({
     url: `/api/${commentId}`,
     method: "delete"
@@ -38,11 +38,19 @@ const handleDelete = async (event: any) => {
   }
 };
 
-const addComment = (comment: string) => {
+const addComment = (comment: string, avatarUrl: string) => {
   const li = document.createElement("li");
   const span = document.createElement("span");
+  const delBtn = document.createElement("span");
+  const avatar = document.createElement("img");
+  avatar.src = `http://localhost:4000/${avatarUrl}`;
+  avatar.style.width = "20px";
+  delBtn.innerHTML = `<i class="fas fa-trash-alt"></i>`;
+  delBtn.addEventListener("click", handleDelete);
   span.innerHTML = comment;
+  li.appendChild(avatar);
   li.appendChild(span);
+  li.appendChild(delBtn);
   commentList.prepend(li);
   increaseNumber();
 };
@@ -57,7 +65,10 @@ const sendComment = async (comment: string) => {
     }
   });
   if (response.status === 200) {
-    addComment(comment);
+    const {
+      data: { avatarUrl }
+    } = response;
+    addComment(comment, avatarUrl);
   }
 };
 

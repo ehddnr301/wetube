@@ -670,6 +670,8 @@ input[type="submit"] {
         -webkit-border-bottom-left-radius: 0px;
            -moz-border-radius-bottomleft: 0px;
                 border-bottom-left-radius: 0px; }
+        .video-detail__container .video__comments .video__comments-list li img {
+          width: 20px; }
         .video-detail__container .video__comments .video__comments-list li:not(:last-child) {
           margin-bottom: 15px; }
 

@@ -51,6 +51,9 @@
     .video__comments-list {
       margin-top: 50px;
       li {
+        img {
+          width: 20px;
+        }
         background-color: #f1c40f;
         color: white;
         padding: 15px;

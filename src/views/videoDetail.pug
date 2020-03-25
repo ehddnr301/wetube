@@ -34,6 +34,8 @@ block content
             ul.video__comments-list#jsCommentList
                 each comment in video.comments.reverse()
                     li
+                        img(src=`http://localhost:4000/${comment.creator.avatarUrl}`, alt="avatar")
                         span=comment.text 
-                        if loggedUser && String(comment.creator) === loggedUser.id
-                            span(id=comment.id).jsDeleteBtn ❌
+                        if loggedUser && String(comment.creator.id) === loggedUser.id
+                            span(id=comment.id).jsDeleteBtn
+                                <i class="fas fa-trash-alt"></i>

@@ -1,9 +1,11 @@
 import mongoose from "mongoose";
+import { IUser } from "./User";
 
 export interface IComment extends mongoose.Document {
   text: string;
   createAt: Date;
   _id: string;
+  creator: IUser;
 }
 
 const CommentSchema: mongoose.Schema<IComment> = new mongoose.Schema({
