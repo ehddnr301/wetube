@@ -32,9 +32,7 @@ export const postJoin = async (
     try {
       const user = new User({
         name,
-        email,
-        avatarUrl:
-          "https://t3.ftcdn.net/jpg/00/64/67/52/240_F_64675209_7ve2XQANuzuHjMZXP3aIYIpsDKEbF5dD.jpg"
+        email
       });
       await User.register(user, password);
       next();
@@ -48,6 +46,7 @@ export const postJoin = async (
 export const getMe = async (req: Request, res: Response) => {
   const id = req.user["id"];
   const userMe = await User.findById(id).populate("videos");
+  console.log(userMe);
   res.render("userDetail", {
     pageTitle: "User Detail",
     user: req.user,
@@ -73,7 +72,7 @@ export const userDetail = async (req: Request, res: Response) => {
   } = req;
   try {
     const user = await User.findById(id).populate("videos");
-    console.log(user);
+
     res.render("userDetail", { pageTitle: "User Detail", user });
   } catch (error) {
     res.redirect(routes.home);

@@ -11,7 +11,11 @@ export interface IUser extends mongoose.Document {
 }
 
 const UserSchema: mongoose.PassportLocalSchema = new mongoose.Schema({
-  avatarUrl: String,
+  avatarUrl: {
+    type: String,
+    default:
+      "https://moonvillageassociation.org/wp-content/uploads/2018/06/default-profile-picture1.jpg"
+  },
   comments: [
     {
       ref: "Comment",
