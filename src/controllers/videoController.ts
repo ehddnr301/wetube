@@ -60,7 +60,6 @@ export const videoDetail = async (req: Request, res: Response) => {
         path: "creator"
       }
     });
-    console.log(video.comments.forEach(c => console.log(c.creator.id)));
     res.render("videoDetail", { pageTitle: video.title, video });
   } catch (error) {
     res.redirect(routes.home);
@@ -73,12 +72,11 @@ export const getEditVideo = async (req: Request, res: Response) => {
   } = req;
   try {
     const video = await Video.findById(id);
-    if (video.creator !== req.user["id"]) {
+    if (String(video.creator) !== req.user["id"]) {
       throw Error();
     } else {
       res.render("editVideo", { pageTitle: `Edit ${video.title}`, video });
     }
-    res.render("editVideo", { pageTitle: `Edit ${video.title}`, video });
   } catch (error) {
     res.redirect(routes.home);
   }
@@ -102,10 +100,15 @@ export const deleteVideo = async (req: Request, res: Response) => {
     params: { id }
   } = req;
   try {
-    const video = await Video.findById(id);
-    if (video.creator !== req.user["id"]) {
+    const video = await Video.findById(id).populate("comments");
+    console.log(video.comments);
+    if (String(video.creator) !== req.user["id"]) {
       throw Error();
     } else {
+      console.log("delete");
+      video.comments.forEach(
+        async c => await Comment.findOneAndRemove({ _id: c.id })
+      );
       await Video.findOneAndRemove({ _id: id });
     }
   } catch (error) {

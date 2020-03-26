@@ -43,7 +43,9 @@ const addComment = (comment: string, avatarUrl: string) => {
   const span = document.createElement("span");
   const delBtn = document.createElement("span");
   const avatar = document.createElement("img");
-  avatar.src = `http://localhost:4000/${avatarUrl}`;
+  avatar.src = avatarUrl.includes("moonvillageassociation")
+    ? avatarUrl
+    : `http://localhost:4000/${avatarUrl}`;
   avatar.style.width = "20px";
   delBtn.innerHTML = `<i class="fas fa-trash-alt"></i>`;
   delBtn.addEventListener("click", handleDelete);
