@@ -60,6 +60,7 @@ export const videoDetail = async (req: Request, res: Response) => {
         path: "creator"
       }
     });
+    console.log(video.comments.forEach(c => console.log(c)));
     res.render("videoDetail", { pageTitle: video.title, video });
   } catch (error) {
     res.redirect(routes.home);
@@ -148,7 +149,8 @@ export const postAddComment = async (req: Request, res: Response) => {
     });
     video.comments.push(newComment.id);
     video.save();
-    res.status(200).json(user);
+    const commentId = newComment.id;
+    res.status(200).json({ user, commentId });
   } catch (error) {
     res.status(400);
   } finally {
