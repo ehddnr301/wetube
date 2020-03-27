@@ -33,11 +33,11 @@ export const getUpload = (req: Request, res: Response) =>
 export const postUpload = async (req: Request, res: Response) => {
   const {
     body: { title, description },
-    file: { path }
-  } = req;
+    file: { location }
+  }: { file: any; body: any } = req;
   const creator = req.user["id"];
   const newVideo = await Video.create({
-    fileUrl: path,
+    fileUrl: location,
     title,
     description,
     creator
