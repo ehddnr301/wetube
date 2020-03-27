@@ -5,7 +5,7 @@
   "license": "MIT",
   "scripts": {
     "dev:server": "tsc-watch --onSuccess \" node build/init.js\" ",
-    "dev:assets": "cross-env WEBPACK_ENV=development TS_NODE_PROJECT=\"./tsconfig-for-webpack-config.json\" webpack -w",
+    "dev:assets": "WEBPACK_ENV=development TS_NODE_PROJECT=\"./tsconfig-for-webpack-config.json\" webpack -w",
     "build:assets": "WEBPACK_ENV=production webpack",
     "build:server": "tsc",
     "prebuild": "rm -rf build",
