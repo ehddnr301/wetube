@@ -1,6 +1,7 @@
 import path from "path";
 import autoprefixer from "autoprefixer";
 import ExtractCSS from "extract-text-webpack-plugin";
+const { CheckerPlugin } = require("awesome-typescript-loader");
 
 const MODE = process.env.WEBPACK_ENV;
 const ENTRY_FILE = path.resolve(__dirname, "src/assets", "ts", "main.ts");
@@ -16,7 +17,7 @@ const config = {
         test: /\.(ts)$/,
         use: [
           {
-            loader: "ts-loader"
+            loader: "awesome-typescript-loader"
           }
         ]
       },
@@ -45,7 +46,7 @@ const config = {
     path: OUTPUT_DIR,
     filename: "[name].js"
   },
-  plugins: [new ExtractCSS("styles.css")],
+  plugins: [new CheckerPlugin(), new ExtractCSS("styles.css")],
   resolve: {
     extensions: [".ts", ".js"]
   }
