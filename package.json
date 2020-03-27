@@ -8,12 +8,12 @@
     "dev:assets": "cross-env WEBPACK_ENV=development TS_NODE_PROJECT=\"./tsconfig-for-webpack-config.json\" webpack -w",
     "build:assets": "WEBPACK_ENV=production webpack",
     "build:server": "tsc",
+    "postinstall": "npm run build:server",
     "copyAll": "cp -R 'static' 'build' && cp -R 'src/views' 'build'",
     "build": "npm run build:server && npm run build:assets && npm run copyAll",
     "prebuild": "rm -rf build",
     "start": "node build/init.js",
-    "prestart": "npm run build",
-    "postinstall": "npm run build"
+    "prestart": "npm run build"
   },
   "dependencies": {
     "@babel/cli": "^7.8.4",
