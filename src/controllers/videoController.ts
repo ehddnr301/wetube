@@ -65,7 +65,7 @@ export const videoDetail = async (req: Request, res: Response) => {
           path: "creator"
         }
       });
-    console.log(video.comments);
+
     res.render("videoDetail", { pageTitle: video.title, video });
   } catch (error) {
     res.redirect(routes.home);
@@ -107,11 +107,9 @@ export const deleteVideo = async (req: Request, res: Response) => {
   } = req;
   try {
     const video = await Video.findById(id).populate("comments");
-    console.log(video.comments);
     if (String(video.creator) !== req.user["id"]) {
       throw Error();
     } else {
-      console.log("delete");
       video.comments.forEach(
         async c => await Comment.findOneAndRemove({ _id: c.id })
       );

@@ -6,7 +6,7 @@ header.header
                 span Wetube  NomadCoders
         .header__column
             form(action=routes.search, method="get")
-                input(type="text", placeholder="Search by term...", name="term")
+                input(type="text", placeholder="Search by term...",maxlength="20", name="term")
         .header__column
             .info
                 .info__one Nomadcoders

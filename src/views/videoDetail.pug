@@ -8,7 +8,7 @@ block content
             src:video.fileUrl
         })
         .video__info
-            if loggedUser && String(video.creator) === loggedUser.id
+            if loggedUser && String(video.creator.id) === loggedUser.id
                 a(href=routes.editVideo(video.id))
                     button Edit video
             h5.video__title=video.title
@@ -30,11 +30,11 @@ block content
                     span#jsCommentNumber=video.comments.length
                     |  comments
             form.add__comment#jsAddComment
-                input(type="text", placeholder="Add a comment")
+                input(type="text", placeholder="Add a comment" maxlength="25")
             ul.video__comments-list#jsCommentList
                 each comment in video.comments.reverse()
                     li
-                        img(src=comment.creator.avatarUrl && comment.creator.avatarUrl.includes('moonvillageassociation')? comment.creator.avatarUrl : `http://localhost:4000/${comment.creator.avatarUrl}`, alt="avatar")
+                        img(src=comment.creator.avatarUrl && comment.creator.avatarUrl.includes('moonvillageassociation') || comment.creator.avatarUrl.includes('githubuser')? comment.creator.avatarUrl : `http://localhost:4000/${comment.creator.avatarUrl}`, alt="avatar")
                         span=comment.text 
                         if loggedUser && String(comment.creator.id) === loggedUser.id
                             span(id=comment.id).jsDeleteBtn

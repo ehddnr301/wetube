@@ -51,6 +51,8 @@
     .video__comments-list {
       margin-top: 50px;
       li {
+        display: flex;
+        justify-content: space-between;
         img {
           width: 20px;
         }
