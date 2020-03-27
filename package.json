@@ -1,17 +1,17 @@
 {
   "name": "wetube",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "init.js",
   "license": "MIT",
   "scripts": {
     "dev:server": "tsc-watch --onSuccess \" node dist/init.js\" ",
     "dev:assets": "cross-env WEBPACK_ENV=development TS_NODE_PROJECT=\"./tsconfig-for-webpack-config.json\" webpack -w",
     "build:assets": "WEBPACK_ENV=production webpack",
     "build:server": "tsc",
+    "prebuild": "rm -rf build",
     "postinstall": "npm run build:server",
     "copyAll": "cp -R 'static' 'build' && cp -R 'src/views' 'build'",
     "build": "npm run build:server && npm run build:assets && npm run copyAll",
-    "prebuild": "rm -rf build",
     "start": "node build/init.js",
     "prestart": "npm run build"
   },
