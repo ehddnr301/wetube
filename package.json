@@ -6,7 +6,7 @@
   "scripts": {
     "dev:server": "tsc-watch --onSuccess \" node build/init.js\" ",
     "dev:assets": "WEBPACK_ENV=development TS_NODE_PROJECT=\"./tsconfig-for-webpack-config.json\" webpack -w",
-    "build:assets": "cd src && WEBPACK_ENV=production webpack",
+    "build:assets": "WEBPACK_ENV=production webpack",
     "build:server": "babel src --out-dir build --ignore \"src/assets\" --extensions \".ts,.tsx\"",
     "prebuild": "rm -rf build",
     "copyAll": "cp -R src/static build && cp -R src/views build",
@@ -17,6 +17,7 @@
   "dependencies": {
     "@babel/cli": "^7.8.4",
     "@babel/core": "^7.9.0",
+    "@babel/plugin-proposal-class-properties": "^7.8.3",
     "@babel/polyfill": "^7.8.7",
     "@babel/preset-env": "^7.9.0",
     "@babel/preset-typescript": "^7.9.0",
