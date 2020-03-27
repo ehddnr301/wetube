@@ -17,6 +17,9 @@ const config = {
         test: /\.(ts)$/,
         use: [
           {
+            loader: "babel-loader"
+          },
+          {
             loader: "awesome-typescript-loader"
           }
         ]
