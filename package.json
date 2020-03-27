@@ -9,10 +9,10 @@
     "build:assets": "WEBPACK_ENV=production webpack",
     "build:server": "tsc",
     "copyAll": "cp -R 'static' 'build' && cp -R 'src/views' 'build'",
-    "build": "yarn run build:server && yarn run build:assets && yarn run copyAll",
+    "build": "npm run build:server && npm run build:assets && npm run copyAll",
     "prebuild": "rm -rf build",
     "start": "node build/init.js",
-    "prestart": "yarn run build"
+    "prestart": "npm run build"
   },
   "dependencies": {
     "@babel/cli": "^7.8.4",
