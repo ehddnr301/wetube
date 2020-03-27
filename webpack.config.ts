@@ -3,7 +3,7 @@ import autoprefixer from "autoprefixer";
 import ExtractCSS from "extract-text-webpack-plugin";
 
 const MODE = process.env.WEBPACK_ENV;
-const ENTRY_FILE = path.resolve(__dirname, "assets", "ts", "main.ts");
+const ENTRY_FILE = path.resolve(__dirname, "src/assets", "ts", "main.ts");
 const OUTPUT_DIR = path.join(__dirname, "static");
 
 const config = {
