@@ -13,4 +13,4 @@ const handleListening = () =>
   // tslint:disable-next-line: no-console
   console.log(`✅ Listening on: http://localhost:${PORT}`);
 
-app.listen(PORT, handleListening);
+app.listen(process.env.PORT, handleListening);
