@@ -71,13 +71,18 @@
 - comment.creator 까지 밖에 안되었습니다.
 
 ```
-const video = await Video.findById(id).populate({
-      path: "comments",
-      populate: {
+const video = await Video.findById(id)
+      .populate({
         model: "User",
         path: "creator"
-      }
-    });
+      })
+      .populate({
+        path: "comments",
+        populate: {
+          model: "User",
+          path: "creator"
+        }
+      });
 ```
 
 - 라고 path랑 model을 적어주니 comment.creator.avatarUrl 까지 접근 가능!
